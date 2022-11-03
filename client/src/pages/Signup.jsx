@@ -9,15 +9,18 @@ let initialData = {
 const Signup = () => {
    const [data,setData] = useState(initialData)
 
+   const handleChange=()=>{
+
+   }
 
   return (
     <div>
         <form>
-            <input type="text" placeholder='Enter Username' name='username' onChange={changeHandler}/>
+            <input type="text" placeholder='Enter Username' name='username' onChange={handleChange}/>
             <br />
-            <input type="text" placeholder='Enter Email' name='email' onChange={changeHandler} />
+            <input type="text" placeholder='Enter Email' name='email' onChange={handleChange} />
             <br />
-            <input type="text" placeholder='Enter Password' name='password' onChange={changeHandler} />
+            <input type="text" placeholder='Enter Password' name='password' onChange={handleChange} />
             <br />
             <input type="submit" />
         </form>
