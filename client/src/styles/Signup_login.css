@@ -1,0 +1,97 @@
+/* <-----------------Signup-------------------> */
+.signup_container{
+    padding: 5% 0%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    align-content: center
+
+}
+.signup_form{
+    border: 1px solid wheat;
+    box-shadow: 2px 1px 2px 1px grey;
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+    padding-bottom: 3%;
+    padding-top: 3%;
+}
+
+.signup_form>input{
+    padding: 2% 1%;
+    width: 80%;
+    margin-top: 3%;
+}
+
+
+.signup_form>input:nth-child(2){
+    margin-top: 5%;
+}
+.signup_form>input:nth-child(8){
+    background-color: rgb(245,215,142);
+    color: black;
+    width: 80%;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 5%;
+}
+.signup_form>input:nth-child(8):hover{
+    background-color: rgb(241,198,91);
+    
+}
+
+.signup_form>span>i{
+   
+    color: blue;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* <---------------------Login----------------------> */
+.login_container{
+    padding: 5% 0%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    align-content: center
+
+}
+.login_form{
+    border: 1px solid wheat;
+    box-shadow: 2px 1px 2px 1px grey;
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+    padding-bottom: 3%;
+    padding-top: 3%;
+}
+
+.login_form>input{
+    padding: 2% 1%;
+    width: 80%;
+    margin-top: 3%;
+}
+
+
+.login_form>input:nth-child(2){
+    margin-top: 5%;
+}
+.login_form>input:nth-child(6){
+    background-color: rgb(245,215,142);
+    color: black;
+    width: 80%;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 5%;
+}
+.login_form>input:nth-child(6):hover{
+    background-color: rgb(241,198,91);
+    
+}
+
+.login_form>span>i{
+   
+    color: blue;
+    font-size: 14px;
+    cursor: pointer;
+}

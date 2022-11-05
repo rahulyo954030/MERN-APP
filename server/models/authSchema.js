@@ -1,5 +1,7 @@
 const {model,Schema} = require("mongoose")
 
+
+{/* <--------Login And Signup-------> */}
 const authSchema = new Schema({
     username : String,
     email : String,
@@ -7,6 +9,10 @@ const authSchema = new Schema({
 })
 
 const AUTH = model('authSchema',authSchema)
-
 module.exports = AUTH
+{/* <--------Login And Signup-------> */}
+
+
+
+
 

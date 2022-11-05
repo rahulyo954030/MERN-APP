@@ -1,0 +1,39 @@
+
+.navbar{
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    background-color: rgb(19,25,33);
+    color: white;
+    position: sticky;
+    top: 0%;
+    padding: 1% 1%;
+}
+.navbar>h3{
+    cursor: pointer;
+}
+.navbar>h3:hover{
+    color: rgb(145, 137, 137);
+}
+
+
+/*  <---------------- Footer------------------> */
+
+.footer_container{
+    display: flex;
+    /* justify-content: center; */
+    justify-content: space-around;
+    background-color: rgb(19,25,33);
+    color: white;
+    position: sticky;
+    bottom: 0%;
+    padding: 1% 1%;
+}
+
+.footer_container>h3{
+    cursor: pointer;
+}
+.footer_container>h3:hover{
+    border: 1px solid;
+    color: whitesmoke;
+}
