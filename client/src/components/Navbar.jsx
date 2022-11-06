@@ -19,7 +19,7 @@ const Navbar = () => {
   }, []);
   const getupdateddate =() => {
     axios
-      .get(`http://localhost:8080/auth/logout`)
+      .get(`http://localhost:3030/logout`)
       .then(res => {
         setData(res.data);
         console.log(res.data);
@@ -27,14 +27,21 @@ const Navbar = () => {
       .catch((e) => console.log(e));
   };
 
-  const logoutFunction = () => {
-
-    for(let i =0; i<data.length; i++){
-      data.splice(i,1);
-    }
-    
+  const logoutFunction = (e) => {
     // navigate("/");
-  };
+    axios
+    .delete(
+      `http://localhost:3030/logout/${e.id}`
+    )
+    .then((res) => {
+      getupdateddate();
+      console.log("deleted", res);
+    })
+    .catch((err) => console.log(err));
+    
+    }
+  
+
   return (
     <div className="navbar">
       <h3 onClick={() => navigate("/home")}>HOME</h3>
@@ -43,7 +50,7 @@ const Navbar = () => {
       <h3 onClick={() => navigate("/cart")}>CART</h3>
       <h3 onClick={() => navigate("/login")}>LOGIN</h3>
       <h3 onClick={() => navigate("/")}>SIGNUP</h3>
-      <h3 onClick={logoutFunction}>LOGOUT</h3>
+      <h3 onClick={()=>logoutFunction(data[0])}>LOGOUT</h3>
     </div>
   );
 };

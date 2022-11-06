@@ -27,7 +27,7 @@ const Login = () => {
         console.log(res.data);
 
         axios
-      .post("http://localhost:8080/auth/logout", data)
+      .post("http://localhost:3030/logout", data)
 
       setData(initialData);
         navigate("/home");
