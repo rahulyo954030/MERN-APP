@@ -16,26 +16,27 @@ const Navbar = () => {
 
   useEffect(() => {
     getupdateddate();
-  }, []);
+  });
   const getupdateddate =() => {
     axios
-      .get(`http://localhost:3030/logout`)
+      .get(`http://localhost:8080/auth/logout`)
       .then(res => {
         setData(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((e) => console.log(e));
   };
 
   const logoutFunction = (e) => {
-    // navigate("/");
+    
     axios
     .delete(
-      `http://localhost:3030/logout/${e.id}`
+      `http://localhost:8080/auth/logout/${e._id}`
     )
     .then((res) => {
       getupdateddate();
-      console.log("deleted", res);
+      console.log("deleted", res)
+      navigate("/")
     })
     .catch((err) => console.log(err));
     
