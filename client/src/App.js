@@ -7,6 +7,7 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Blogs from "./pages/Blogs";
+import Pvtroute from "./components/Pvtroute";
 // import Footer from "./components/Footer";
 
 function App() {
@@ -14,10 +15,23 @@ function App() {
     <div>
       <Navbar/>
       <Routes>
-        <Route path="/home" element={<Home/>} />
-        <Route path="/blogs" element={<Blogs/>} />
-        <Route path="/products" element={<Products/>} />
-        <Route path="/cart" element={<Cart/>} />
+        <Route path="/home" element={
+        <Pvtroute>
+         <Home/>
+        </Pvtroute>
+        } />
+        <Route path="/blogs" element={
+        <Pvtroute>
+        <Blogs/>
+        </Pvtroute>} />
+        <Route path="/products" element={
+        <Pvtroute>
+        <Products/>
+        </Pvtroute>} />
+        <Route path="/cart" element={
+        <Pvtroute>
+        <Cart/>
+        </Pvtroute>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/" element={<Signup/>} />
       </Routes>
