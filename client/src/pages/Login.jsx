@@ -23,11 +23,13 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    
     axios
       .post("http://localhost:8080/auth/login", data)
       .then((res) => {
         // console.log(res.data);
-
+       
+        
         axios
       .post("http://localhost:8080/auth/logout", data)
       
