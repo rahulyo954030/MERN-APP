@@ -1,34 +1,14 @@
 import React from 'react'
-import { useEffect } from 'react';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom'
-import axios from "axios"
+import { useCookies } from 'react-cookie';
 
-let initialData = {
-    email: "",
-    password: "",
-  };
+
 const Pvtroute = ({children}) => {
-   
-    const [data, setData] = useState(initialData);
-
-
-    useEffect(() => {
-      getupdateddate();
-    });
-    const getupdateddate =() => {
-      axios
-        .get(`http://localhost:8080/auth/logout`)
-        .then(res => {
-          setData(res.data);
-          console.log("logout",res.data);
-          
-        })
-        .catch((e) => console.log(e));
-    };
-  
-    console.log(data)
-    if(data[0]){
+  const [cookies, setCookie, removeCookie] = useCookies();
+ 
+  // console.log("cookies",cookies.Name)
+    if(cookies.Name){
         return children
     }
   return <Navigate to="/login"/>

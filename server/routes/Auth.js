@@ -1,5 +1,4 @@
 const AUTH = require("../models/authSchema")
-const LOGOUT = require("../models/logoutSchema")
 const {Router} =  require("express")
 const jwt = require("jsonwebtoken")
 
@@ -79,53 +78,6 @@ catch{
 {/* <------------------------Login---------------------------> */}
 
 
-
-{/* <------------------------Logout---------------------------> */}
-authRouter.post("/logout",(req,res)=>{
-    const logout = new LOGOUT(req.body)
-    logout.save((e,success)=>{
-        try{
-            res.status(201).send({message: "Data Added Successfully", logout: success["_doc"]})
-        }
-        catch(e){
-            res.status(404).send({message: "Error Occured"})
-        }
-    })
-})
-
-authRouter.get("/logout", async(req,res)=>{
-    const logout = await LOGOUT.find()
-    try{
-        res.status(200).send(logout)
-    }
-    catch(e){
-        res.status(404).send(e)
-    }
-})
-
-authRouter.get("/logout/:id", async(req,res)=>{
-    const id = req.params.id
-    const logout = await LOGOUT.find({_id: id})
-    try{
-        res.status(200).send(logout)
-    }
-    catch(e){
-        res.status(404).send(e)
-    }
-})
-
-authRouter.delete("/logout/:userid", async (req, res) => {
-    const userid = req.params.userid
-    
-    const User = await LOGOUT.deleteOne({_id: userid})
-                    .then(result => {
-                        return res.status(201).send({message: "Deleted Successfully"})
-                    })
-                    .catch(err => {
-                        return res.status(401).send({message: "Something went wrong"})
-                    })
-})
-{/* <------------------------Logout---------------------------> */}
 
 
 

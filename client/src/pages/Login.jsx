@@ -3,6 +3,7 @@ import "../styles/Signup_login.css";
 import { useState , useEffect} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 let initialData = {
   username: "",
@@ -10,6 +11,7 @@ let initialData = {
   password: "",
 };
 const Login = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [data, setData] = useState(initialData);
   const [logoutdata, setlogoutData] = useState(initialData);
   const navigate = useNavigate();
@@ -28,11 +30,10 @@ const Login = () => {
       .post("http://localhost:8080/auth/login", data)
       .then((res) => {
         // console.log(res.data);
-       
+
+        setCookie('Name', res.data, { path: '/' });
         
-        axios
-      .post("http://localhost:8080/auth/logout", data)
-      
+      navigate("/home");
       setData(initialData);
         
       })
@@ -44,7 +45,6 @@ const Login = () => {
 
     setData(initialData);
 
-    navigate("/home");
   };
 
   return (
