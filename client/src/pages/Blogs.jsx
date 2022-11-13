@@ -2,7 +2,26 @@ import React from 'react'
 
 const Blogs = () => {
   return (
-    <div>Blogs</div>
+    <div>
+      <input type="text" />
+      <br />
+      <input type="text" />
+      <br />
+      <select name="" id="">
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+      </select>
+      <input type="text" />
+      <br />
+      <input type="text" />
+    </div>
   )
 }
 
