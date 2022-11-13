@@ -5,7 +5,7 @@ const blogSchema = new Schema({
     image : String,
     catagory: {
         type : String, 
-        emum : ["Entertainment", "Movie", "Sports", "Game", "Cartoon", "Adventure", "Action", "News", "Other"]
+        emum : ["Entertainment", "Movie", "Sports", "Game", "Anime", "Adventure", "Action", "News", "Other"]
     }, 
     body: String,
 
