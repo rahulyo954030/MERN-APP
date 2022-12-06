@@ -1,7 +1,11 @@
 import axios from 'axios'
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
-import Feeds from '../components/Blog_components/Feeds'
+import BlogSort from '../components/blog_components/BlogSort'
+import Feeds from '../components/blog_components/Feeds'
+
+
 import "../styles/Blog.css"
 let indata ={
   image:"",
@@ -11,6 +15,7 @@ let indata ={
 }
 const Blogs = () => {
   const [data,setData] = useState(indata)
+  const [getdata,setGetdata] = useState([])
 
   const changeHandler =(e)=>{
     const {name,value} = e.target
@@ -23,9 +28,23 @@ const Blogs = () => {
     .then((res)=>{
       console.log(res.data)
       setData(indata)
+      getBlogFunction()
     })
     .catch(err =>console.log(err))
 
+  }
+
+  useEffect(()=>{
+    getBlogFunction()
+  },[])
+
+  const  getBlogFunction=()=>{
+    axios.get("http://localhost:8080/blog")
+    .then((res)=>{
+      setGetdata(res.data)
+      // console.log(res.data)
+    })
+    .catch(err =>console.log(err))
   }
   return (
     <div>
@@ -43,7 +62,6 @@ const Blogs = () => {
         <option value="Game">Game</option>
         <option value="Anime">Anime</option>
         <option value="Adventure">Adventure</option>
-        <option value="Adventure">Adventure</option>
         <option value="Action">Action</option>
         <option value="News">News</option>
         <option value="Other">Other</option>
@@ -56,7 +74,11 @@ const Blogs = () => {
       <input type="submit" value="ADD BLOG" className='addPostButton'/>
       </div>
       </form>
-      <Feeds/>
+
+      {/* <---------------------Getting Blogs---------------------> */}
+      <BlogSort/>
+      <Feeds getdata={getdata}/>
+     
     </div>
   )
 }
