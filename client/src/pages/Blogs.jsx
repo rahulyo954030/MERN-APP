@@ -2,7 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import BlogSort from '../components/blog_components/BlogSort'
+
 import Feeds from '../components/blog_components/Feeds'
 
 
@@ -16,6 +16,7 @@ let indata ={
 const Blogs = () => {
   const [data,setData] = useState(indata)
   const [getdata,setGetdata] = useState([])
+  const [filtered, setFiltered] = useState("");
 
   const changeHandler =(e)=>{
     const {name,value} = e.target
@@ -46,6 +47,24 @@ const Blogs = () => {
     })
     .catch(err =>console.log(err))
   }
+
+
+  function filtervalue(e) {
+    axios
+      .get(`http://localhost:8080/blog?catagory_like=${e.target.value}`)
+      .then((res) => {
+        setGetdata(res.data);
+
+        setFiltered(e.target.value);
+        console.log(res.data)
+        // getBlogFunction()
+      })
+      .catch((e) => console.log(e));
+  }
+  useEffect(() => {
+    
+  }, [filtered]);
+
   return (
     <div>
       <form className='form' onSubmit={submitHandler}>
@@ -76,7 +95,20 @@ const Blogs = () => {
       </form>
 
       {/* <---------------------Getting Blogs---------------------> */}
-      <BlogSort/>
+      <div>
+      <select onChange={filtervalue}>
+            <option>Sort by Category</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Movie">Movie</option>
+            <option value="Sports">Sports</option>
+            <option value="Game">Game</option>
+            <option value="Anime">Anime</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Action">Action</option>
+            <option value="News">News</option>
+            <option value="Other">Other</option>
+        </select>
+      </div>
       <Feeds getdata={getdata}/>
      
     </div>
