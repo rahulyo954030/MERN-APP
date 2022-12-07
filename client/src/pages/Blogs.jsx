@@ -95,9 +95,10 @@ const Blogs = () => {
       </form>
 
       {/* <---------------------Getting Blogs---------------------> */}
-      <div>
+      <div className='blog_sort_filter_container'>
+        {/* filter */}
       <select onChange={filtervalue}>
-            <option>Sort by Category</option>
+            <option>Filter by Category</option>
             <option value="Entertainment">Entertainment</option>
             <option value="Movie">Movie</option>
             <option value="Sports">Sports</option>
@@ -107,6 +108,17 @@ const Blogs = () => {
             <option value="Action">Action</option>
             <option value="News">News</option>
             <option value="Other">Other</option>
+        </select>
+
+        {/* Search bar */}
+        <input type="text" placeholder='Search by title...' />
+
+          {/* Sort by title */}
+        <select>
+            <option>Sort by Title</option>
+            <option value="A-Z">A - Z</option>
+            <option value="Z-A">Z - A</option>
+            
         </select>
       </div>
       <Feeds getdata={getdata}/>

@@ -40,3 +40,39 @@
     box-shadow: 2px 1px 2px 1px grey;
 }
 
+.feed_map_card img{
+    width: 80%;
+}
+
+.blog_sort_filter_container{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    position: sticky;
+    top: 7%;
+    background-color: white;
+    padding: 1% 0%;
+}
+.blog_sort_filter_container>input{
+    width: 30%;
+    padding: 1%;
+    border-radius: 6px;
+    font-size: 16px;
+}
+.Blog_delete_edit_buttons_container{
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+}
+.Blog_delete_edit_buttons_container > button{
+    background-color: rgb(245,215,142);
+    margin-top: 2%;
+    cursor: pointer;
+    padding: 1% 2%;
+    border-radius: 6px;
+}
+.Blog_delete_edit_buttons_container > button:hover{
+    background-color: rgb(241,198,91);
+}
+
