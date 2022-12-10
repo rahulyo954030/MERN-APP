@@ -16,7 +16,11 @@ let indata ={
 const Blogs = () => {
   const [data,setData] = useState(indata)
   const [getdata,setGetdata] = useState([])
-  const [filtered, setFiltered] = useState("");
+  const [filtered, setFiltered] = useState("")
+  const [pageNumber, setPageNumber] = useState(0);
+  const [total_Pages, settotal_Pages] = useState(0);
+
+  const pages = new Array(total_Pages).fill(null).map((v,i)=>i)
 
   const changeHandler =(e)=>{
     const {name,value} = e.target
@@ -37,17 +41,14 @@ const Blogs = () => {
 
   useEffect(()=>{
     getBlogFunction()
-  },[])
+  },[pageNumber])
 
   const  getBlogFunction=()=>{
-    
-    axios.get(`http://localhost:8080/blog`)
-    
+    axios.get(`http://localhost:8080/blog?page=${pageNumber}`)
     .then((res)=>{
-      
-      setGetdata(res.data)
-     
-      // console.log(res.data)
+      setGetdata(res.data.blog)
+      settotal_Pages(res.data.totalPages)
+      console.log(res.data)
     })
     .catch(err =>console.log(err))
   }
@@ -69,6 +70,12 @@ const Blogs = () => {
     
   }, [filtered]);
 
+  const gotoPrevious =()=>{
+    setPageNumber(Math.max(0,pageNumber-1))
+  }
+  const gotoNext =()=>{
+    setPageNumber(Math.min(total_Pages-1,pageNumber+1))
+  }
   return (
     <div>
       <form className='form' onSubmit={submitHandler}>
@@ -126,7 +133,18 @@ const Blogs = () => {
         </select>
       </div>
       <Feeds getdata={getdata}/>
-     
+      <div>
+        Page : {pageNumber+1}
+      </div>
+      <div>
+        <button onClick={gotoPrevious} >Previous</button>
+        {pages.map((pageIndex,i)=>(
+          <button key={i} onClick={()=>setPageNumber(pageIndex)}>
+            {pageIndex+1}
+          </button>
+        ))}
+        <button onClick={gotoNext}>Next</button>
+      </div>
     </div>
   )
 }

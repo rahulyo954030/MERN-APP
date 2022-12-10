@@ -7,10 +7,14 @@ const blogRouter  = Router()
 // <----------------------- Get Request for Blog-----------------------------> //
 
 blogRouter.get("/", async(req,res)=>{
-    const { page = 1, limit = 12 } = req.query;
-    const blog = await BLOG.find().limit(limit * 1).skip((page - 1) * limit);
+    // const { page = 1, limit = 12 } = req.query;
+    // const blog = await BLOG.find().limit(limit * 1).skip((page - 1) * limit);
+    const PAGE_SIZE = 12
+    const page = parseInt(req.query.page || 0)
+    const total = await BLOG.countDocuments()
+    const blog = await BLOG.find().limit(PAGE_SIZE).skip(PAGE_SIZE*page)
     try{
-        res.status(200).send(blog)
+        res.status(200).send({"totalPages": Math.ceil(total/PAGE_SIZE),"blog" : blog})
     }
     catch(e){
         res.status(404).send({message: "Not Found", Error:e})

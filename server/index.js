@@ -3,6 +3,7 @@ const connection  = require("./database/db")
 const blogRouter = require("./routes/blog")
 const productRouter = require("./routes/product")
 const authRouter = require("./routes/Auth")
+const cors = require("cors")
 
 const app = express()
 app.use(express.json())
@@ -11,6 +12,9 @@ app.use("/blog",blogRouter)
 app.use("/product",productRouter)
 app.use("/auth",authRouter)
 
+app.use(cors({
+    origin:"*"
+  }))
 
 app.get("/",(req,res)=>{
     res.send("Welcome to Home Page")
