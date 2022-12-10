@@ -7,7 +7,8 @@ const blogRouter  = Router()
 // <----------------------- Get Request for Blog-----------------------------> //
 
 blogRouter.get("/", async(req,res)=>{
-    const blog = await BLOG.find()
+    const { page = 1, limit = 12 } = req.query;
+    const blog = await BLOG.find().limit(limit * 1).skip((page - 1) * limit);
     try{
         res.status(200).send(blog)
     }

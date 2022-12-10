@@ -40,9 +40,13 @@ const Blogs = () => {
   },[])
 
   const  getBlogFunction=()=>{
-    axios.get("http://localhost:8080/blog")
+    
+    axios.get(`http://localhost:8080/blog`)
+    
     .then((res)=>{
+      
       setGetdata(res.data)
+     
       // console.log(res.data)
     })
     .catch(err =>console.log(err))

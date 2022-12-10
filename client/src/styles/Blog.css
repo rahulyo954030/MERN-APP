@@ -32,12 +32,14 @@
     text-align: center;
     gap: 1% 2%;
     padding: 2%;
+    padding-bottom: 5%;
 }
 .feed_map_card{
     border: 1px solid;
     padding: 2%;
     border-radius: 6px;
     box-shadow: 2px 1px 2px 1px grey;
+
 }
 
 .feed_map_card img{
