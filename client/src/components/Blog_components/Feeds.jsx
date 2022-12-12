@@ -10,7 +10,7 @@ const Feeds = (props) => {
               <div key={e._id} className="feed_map_card">
                 <h1>{e.title}</h1>
                 <img src={e.image} alt="blog image" />
-                <h3>{e.catagory}</h3>
+                <h3>{e.category}</h3>
                 <p>{e.body}</p>
                 <div className='Blog_delete_edit_buttons_container' >
                   <button>Edit</button>

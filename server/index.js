@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express  = require("express")
 const connection  = require("./database/db")
 const blogRouter = require("./routes/blog")
@@ -7,6 +8,7 @@ const cors = require("cors")
 
 const app = express()
 app.use(express.json())
+app.use('/uploads',express.static('uploads'))
 app.use(express.urlencoded({extended:true}))
 app.use("/blog",blogRouter)
 app.use("/product",productRouter)
