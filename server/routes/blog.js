@@ -2,20 +2,10 @@ const BLOG  = require("../models/blogSchema")
 
 const {Router} = require("express")
 const multer = require("multer")
-// const GridFsStorage = require("multer-gridfs-storage");
+
 const blogRouter  = Router()
 
-const image = multer({
-      
-    limits:{
-        fileSize:1000000
-    },
-    fileFilter(req,file,cb){
-        if(!file.originalname.match(/\.(jpg|png|JPG|PNG|JPEG|jpeg)$/))
-       return cb(new Error("This is not a correct form of the file"))
-       cb(undefined,true)
-    }
-})
+
 
 
 
@@ -38,14 +28,10 @@ blogRouter.get("/",async(req,res)=>{
 
 
 // <----------------------- Post Request for Product-----------------------------> //
-blogRouter.post("/", image.single("image"), async(req,res)=>{
+blogRouter.post("/", async(req,res)=>{
     
-    if (req.file === undefined) return res.send("you must select a file.")
-    else{
-        const imgUrl = req.file.buffer
-    const image = imgUrl
-    console.log(image);
-    const {title, category, description} = req.body
+   
+    const {image,title, category, description} = req.body
     const blog =  new BLOG({
         image,
         title,
@@ -61,7 +47,7 @@ blogRouter.post("/", image.single("image"), async(req,res)=>{
                          return res.status(404).send({message : "Not Found", Error : e})
                     }
             }) 
-    }
+    
     
 
     
@@ -84,5 +70,7 @@ blogRouter.post("/", image.single("image"), async(req,res)=>{
 //             }
 //     })   
 })
+
+
 
 module.exports = blogRouter
