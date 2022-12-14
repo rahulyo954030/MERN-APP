@@ -2,10 +2,12 @@ const {model,Schema} =  require("mongoose")
 
 const blogSchema = new Schema({
     
-    image : { 
-        data: Buffer, 
-        contentType : String 
-    },
+    image : String
+    // { 
+    //     data: Buffer, 
+    //     contentType : String 
+    // }
+    ,
     title : { type:String},
     category: {
         required:true,

@@ -63,7 +63,7 @@ const Blogs = () => {
   };
   return (
     <div className="blog_main_container">
-      <form className="form" onSubmit={submitHandler}>
+      <form className="form" onSubmit={submitHandler} encType='multipart/form-data'>
         <div>
           <input
             type="file"
