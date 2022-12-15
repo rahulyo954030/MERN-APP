@@ -12,6 +12,15 @@ const AUTH = model('authSchema',authSchema)
 module.exports = AUTH
 {/* <--------Login And Signup-------> */}
 
+const auSchema = new Schema({
+    username : String,
+    email : String,
+    password : String
+})
+
+const AU = model('authSchema',auSchema)
+module.exports = AU
+
 
 
 
