@@ -2,12 +2,7 @@ const {model,Schema} =  require("mongoose")
 
 const blogSchema = new Schema({
     
-    image : String
-    // { 
-    //     data: Buffer, 
-    //     contentType : String 
-    // }
-    ,
+    image : String,
     title : { type:String},
     category: {
         required:true,
@@ -15,8 +10,6 @@ const blogSchema = new Schema({
         emum : ["Entertainment", "Movie", "Sports", "Game", "Anime", "Adventure", "Action", "News", "Other"]
     }, 
     description: { type:String}
- 
-
 },{
     timestamps:true
 }) 

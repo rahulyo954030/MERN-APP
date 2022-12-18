@@ -16,6 +16,7 @@ const Blogs = () => {
   const [data, setData] = useState(indata);
   const [getdata, setGetdata] = useState([]);
   const [filtered, setFiltered] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
   const [total_Pages, settotal_Pages] = useState(0);
 
@@ -66,8 +67,7 @@ const Blogs = () => {
       <form className="form" onSubmit={submitHandler} encType='multipart/form-data'>
         <div>
           <input
-            type="file"
-            accept="image/*"
+            type="text"
             placeholder="Enter image url..."
             name="image"
             value={data.image}
@@ -136,7 +136,9 @@ const Blogs = () => {
         </select>
 
         {/* Search bar */}
-        <input type="text" placeholder="Search by title..." />
+        <input type="text"  placeholder="Search by title..." onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }} />
 
         {/* Sort by title */}
         <select>
@@ -145,7 +147,7 @@ const Blogs = () => {
           <option value="Z-A">Z - A</option>
         </select>
       </div>
-      <Feeds getdata={getdata} />
+      <Feeds getdata={getdata} searchTerm={searchTerm} />
 
       {/* pagination */}
       <div className="pagination_container">

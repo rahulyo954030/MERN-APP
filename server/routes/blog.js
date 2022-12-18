@@ -6,39 +6,6 @@ const multer = require("multer")
 const fs  = require("fs")
 const blogRouter  = Router()
 
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, './storage')
-//     },
-//     filename: function (req, file, cb) {
-//       const uniqueSuffix = Date.now()+'-'+Math.round(Math.random() *1E9)
-//       cb(null, file.fieldname+'-'+uniqueSuffix+"."+"jpg")
-//     }
-//   })
-  
-//   const upload = multer({ storage, storage })
-
-//Upload Setting
-
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './storage');
-    },
-    filename: function(req, file, cb) {   
-        cb(null, uuidv4() + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
-
-const fileFilter = (req, file, cb) => {
-    const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-    if(allowedFileTypes.includes(file.mimetype)) {
-        cb(null, true);
-    } else {
-        cb(null, false);
-    }
-}
-
-let upload = multer({ storage, fileFilter });
 
 
 
@@ -61,22 +28,17 @@ blogRouter.get("/",async(req,res)=>{
 
 
 // <----------------------- Post Request for Product-----------------------------> //
-blogRouter.post("/", upload.single('image'),async(req,res)=>{
+blogRouter.post("/", async(req,res)=>{
     
-//    let Image = req.file.filename
-    const {title, category, description} = req.body
+
+    const {image,title, category, description} = req.body
     const blog =  new BLOG({
-        image :req.file.filename
-        // {
-        //     data:fs.readFileSync("storage/"+req.file.filename),
-        //     contentType:"image/png"
-        // }
-        ,
+        image,
         title,
         category,
         description
     })
-    // return res.send(blog)
+
      blog.save((e, success)=>{
                 try{
                     return res.status(200).send({message : "Blog Added Successfully", blog: success["_doc"]}); 
